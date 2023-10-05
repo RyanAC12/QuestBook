@@ -9,17 +9,43 @@
 <body>
     <header class="header">
         <h1>Quest Book</h1>
-        <img src="/src/assets/bow-arrow.svg">
+        <img src="/src/assets/bow-arrow.svg" alt="bow and arrow icon">
     </header>
     <div class="main">
         <div class="sidebar">
-            <h2>Quests</h2>
+            <header class="sidebar-header">
+                <h2>Quests</h2>
+                <button class="newproject">New Quest</button>
+            </header>
             <div class="project-list">
-                
+                <div class="project">
+                    Default Quest
+                </div>
+                <div class="project">
+                    Default Quest
+                </div>
             </div>
+            <dialog class="project-entry">
+                <h1>New Quest</h1>
+                <form id="project-form">
+                    <div class="input">
+                        <label for="title">What would you like to call this quest?</label>
+                        <input type="text" id="project-title" name="title">
+                    </div>
+                    <div class="formbuttons">
+                        <button type="button" id="cancelProjectBtn">Cancel</button>
+                        <button type="submit" id="addProjectBtn">Create Quest</button>
+                    </div>
+                </form>
+            </dialog>
         </div>
         <div class="project-area">
-            
+            <h1 class="project-title">
+
+            </h1>
+            <ul class="todo-list">
+                
+            </ul>
         </div>
     </div>
 <script src="main.js"></script>
