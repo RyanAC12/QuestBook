@@ -18,19 +18,14 @@
                 <button class="newproject">New Quest</button>
             </header>
             <div class="project-list">
-                <div class="project">
-                    Default Quest
-                </div>
-                <div class="project">
-                    Default Quest
-                </div>
+                
             </div>
             <dialog class="project-entry">
                 <h1>New Quest</h1>
                 <form id="project-form">
                     <div class="input">
                         <label for="title">What would you like to call this quest?</label>
-                        <input type="text" id="project-title" name="title">
+                        <input type="text" id="project-title-input" name="title">
                     </div>
                     <div class="formbuttons">
                         <button type="button" id="cancelProjectBtn">Cancel</button>
@@ -43,9 +38,42 @@
             <h1 class="project-title">
 
             </h1>
+            <div class="buttonarea">
+                <button class="new-todo">+</button>
+                Quest Tasks:
+            </div>
             <ul class="todo-list">
                 
             </ul>
+            <dialog class="todo-entry">
+                <h1>New Task</h1>
+                <form id="todo-form">
+                    <div class="input">
+                        <label for="title">Task name:</label>
+                        <input type="text" id="todo-title-input" name="title">
+                    </div>
+                    <div class="input">
+                        <label for="description">Description:</label>
+                        <input type="text" id="todo-description-input" name="todo-description-input">
+                    </div>
+                    <div class="input">
+                        <label for="duedate">Due Date:</label>
+                        <input type="date" id="todo-duedate-input" name="todo-duedate-input">
+                    </div>
+                    <div class="input">
+                        <label for="title">Priority:</label>
+                        <select id="todo-priority-input" name="todo-priority-input">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="formbuttons">
+                        <button type="button" id="cancelToDoBtn">Cancel</button>
+                        <button type="submit" id="addToDoBtn">Add Task</button>
+                    </div>
+                </form>
+            </dialog>
         </div>
     </div>
 <script src="main.js"></script>
