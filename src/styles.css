@@ -149,6 +149,11 @@ form button:active{
     align-items: center;
     justify-content: flex-start;
     gap: 1rem;
+    overflow: hidden;
+}
+
+.buttonarea{
+    gap: 0.5rem;
 }
 
 .new-todo{
@@ -200,8 +205,36 @@ form button:active{
     background-color: #a8a29e;
 }
 
+.label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
 .todo-item {
     list-style-type: none;
     display: flex;
     gap: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #999;
+    border-radius: 8px;
+    background-color: #ebebeb;
+}
+
+.todo-title {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.todo-description, .todo-date, .todo-priority {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-description {
+    max-width: 400px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
 }

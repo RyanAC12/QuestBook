@@ -1,7 +1,8 @@
 import {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
-    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput} 
+    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput,
+    newtoDoBtn} 
     from './DOMElements';
 
 // Project list
@@ -51,12 +52,15 @@ function titleExists(title, projects) {
     return projects.some(project => project.title === title);
 }
 
+// Display project and its todos on project area
 function displayProject(projectID) {
     const displayProject = projects.find(p => p.title === projectID);
     if (!displayProject) {
         alert('Project not found');
         return;
     }
+    newtoDoBtn.style.display = 'flex';
+    toDoList.style.display = 'flex';
 
     projectTitle.innerHTML = '';
     projectTitle.textContent = displayProject.title;
@@ -113,17 +117,35 @@ function createToDo(newToDo) {
     
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'todo-description';
-    descriptionDiv.textContent = newToDo.description;
+    const descriptionLabel = document.createElement('span');
+    descriptionLabel.className = 'label';
+    descriptionLabel.textContent = "Description:";
+    descriptionDiv.appendChild(descriptionLabel);
+    const descriptionData = document.createElement('span');
+    descriptionData.textContent = newToDo.description;
+    descriptionDiv.appendChild(descriptionData);
     newToDoDiv.appendChild(descriptionDiv);
 
     const dateDiv = document.createElement('div');
     dateDiv.className = 'todo-date';
-    dateDiv.textContent = newToDo.dueDate;
+    const dateLabel = document.createElement('span');
+    dateLabel.className = 'label';
+    dateLabel.textContent = "Due:";
+    dateDiv.appendChild(dateLabel);
+    const dateData = document.createElement('span');
+    dateData.textContent = newToDo.dueDate;
+    dateDiv.appendChild(dateData);
     newToDoDiv.appendChild(dateDiv);
 
     const priorityDiv = document.createElement('div');
     priorityDiv.className = 'todo-priority';
-    priorityDiv.textContent = newToDo.priority;
+    const priorityLabel = document.createElement('span');
+    priorityLabel.className = 'label';
+    priorityLabel.textContent = "Priority:";
+    priorityDiv.appendChild(priorityLabel);
+    const priorityData = document.createElement('span');
+    priorityData.textContent = newToDo.priority;
+    priorityDiv.appendChild(priorityData);
     newToDoDiv.appendChild(priorityDiv);
 
     toDoList.appendChild(newToDoDiv);

@@ -20,6 +20,7 @@ const toDoDueDateInput = document.querySelector('#todo-duedate-input');
 const toDoPriorityInput = document.querySelector('#todo-priority-input');
 const addtoDoBtn = document.querySelector('#addToDoBtn');
 const cancelToDoBtn = document.querySelector('#cancelToDoBtn');
+const newtoDoBtn = document.querySelector('.buttonarea');
 
 
 
@@ -66,4 +67,5 @@ toDoForm.addEventListener('submit', function(e) {
 export {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
-    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput}
+    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput,
+    newtoDoBtn}
