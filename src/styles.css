@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fira+Sans:wght@400;500&family=Jost:wght@500&family=Macondo&family=MedievalSharp&family=Pixelify+Sans:wght@500&family=Poppins:wght@500&family=Roboto:wght@500&family=Skranji&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -220,6 +222,22 @@ form button:active{
     background-color: #ebebeb;
 }
 
+.todo-item button {
+    height: 1.5rem;
+    border: 2px solid black;
+    padding: .5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-radius: .25rem;
+    transition: 0.1s;
+}
+
+.todo-item button:hover{
+    filter: invert(1);
+    transition: 0.1s;
+}
+
 .todo-title {
     font-weight: bold;
     display: flex;
@@ -230,6 +248,7 @@ form button:active{
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 .todo-description {
@@ -237,4 +256,17 @@ form button:active{
     word-wrap: break-word;
     overflow-wrap: break-word;
     text-align: center;
+}
+
+#nightmode-btn {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    left: 35px;
+    transition: 0.2s;
+}
+
+#nightmode-btn:hover {
+    scale: 1.1;
+    transition: 0.2s;
 }

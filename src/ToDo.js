@@ -2,12 +2,13 @@ import {projectList, toDoList, newProjectBtn, projectModal,
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
     addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn} 
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn} 
     from './DOMElements';
 
 // Project list
 let projects = [];
 let currentProject = "";
+let currentToDo = "";
 
 // Project constructor
 function Project(title) {
@@ -21,6 +22,7 @@ function ToDo(title, description, dueDate, priority) {
     this.description = description
     this.dueDate = dueDate
     this.priority = priority
+    this.isCompleted = false;
 }
 
 // Add project to project list
@@ -147,8 +149,66 @@ function createToDo(newToDo) {
     priorityData.textContent = newToDo.priority;
     priorityDiv.appendChild(priorityData);
     newToDoDiv.appendChild(priorityDiv);
+    
+    const completeBtn = document.createElement('button');
+    completeBtn.className = newToDo.title;
+    completeBtn.textContent = 'Complete';
+    completeBtn.addEventListener('click', function() {
+        currentToDo = currentProject.todos.find(todo => todo.title === completeBtn.className);
+        completeToDo(currentToDo);
+    });
+    newToDoDiv.appendChild(completeBtn);
+   
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = newToDo.title;
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', function() {
+        currentToDo = currentProject.todos.find(todo => todo.title === deleteBtn.className);
+        deleteToDo(currentToDo);
+    });
+    newToDoDiv.appendChild(deleteBtn);
+
+    if (newToDo.isCompleted) {
+        titleDiv.style.textDecoration = 'line-through';
+        newToDoDiv.style.backgroundColor = '#475569';
+        completeBtn.style.display = 'none';
+    }
 
     toDoList.appendChild(newToDoDiv);
 }
 
-export {addProject, projects, displayProject, addToDo, currentProject, createToDo}
+function completeToDo(currentToDo) {
+    const ToDoItems = document.querySelectorAll('.todo-item');
+    ToDoItems.forEach(item => {
+        if (item.dataset.title === currentToDo.title) {
+            const currentTitleDiv = item.querySelector('.todo-title');
+            if (currentTitleDiv) {
+                currentTitleDiv.style.textDecoration = 'line-through';
+            }
+            item.style.backgroundColor = '#475569';
+            const buttons = item.querySelectorAll('button');
+            buttons.forEach(button => {
+                if (button.textContent === 'Complete') {
+                    button.style.display = 'none';
+                }
+            });
+        }
+    });
+    currentToDo.isCompleted = true;
+}
+
+function deleteToDo(currentToDo) {
+    const ToDoList = document.querySelector('.todo-list');
+    const ToDoItems = document.querySelectorAll('.todo-item');
+    ToDoItems.forEach(item => {
+        if (item.dataset.title === currentToDo.title) {
+            ToDoList.removeChild(item);
+        }
+    });
+    const index = currentProject.todos.findIndex(todo => todo.title === currentToDo.title);
+        if (index > -1) {
+        currentProject.todos.splice(index, 1);
+        }
+}
+
+export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo}
