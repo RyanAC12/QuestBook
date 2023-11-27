@@ -1,4 +1,4 @@
-import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo } from "./ToDo";
+import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState } from "./ToDo";
 
 // DOM Elements
 const projectList = document.querySelector('.project-list');
@@ -15,7 +15,6 @@ const newToDoBtn = document.querySelector('.new-todo');
 const toDoModal = document.querySelector('.todo-entry');
 const toDoForm = document.querySelector('#todo-form')
 const toDoTitleInput = document.querySelector('#todo-title-input');
-const toDoDescInput = document.querySelector('#todo-description-input');
 const toDoDueDateInput = document.querySelector('#todo-duedate-input');
 const toDoPriorityInput = document.querySelector('#todo-priority-input');
 const addtoDoBtn = document.querySelector('#addToDoBtn');
@@ -28,6 +27,9 @@ const sidebar = document.querySelector('.sidebar');
 const projectArea = document.querySelector('.project-area');
 const nightmodeBtn = document.querySelector('#nightmode-btn');
 const nightmodeIcon = document.querySelector('#nightmode-icon');
+
+const muteBtn = document.querySelector('#mute-btn');
+const muteIcon = document.querySelector('#mute-icon');
 
 
 // Event listeners
@@ -77,22 +79,28 @@ nightmodeBtn.addEventListener('click', setNightmode);
 function setNightmode() {
     if (nightmode == false) {
         nightmode = true;
-        header.style.backgroundColor = '#111827';
+        header.style.backgroundColor = '#1f2937';
         header.style.color = '#f3f4f6';
 
         main.style.backgroundColor = '#1f2937';
         
-        sidebar.style.backgroundColor = '#64748b';
+        sidebar.style.backgroundColor = '#111827';
         sidebar.style.color = '#f3f4f6';
 
-        projectArea.style.backgroundColor = '#94a3b8';
+        projectArea.style.backgroundColor = '#111827';
         projectArea.style.color = '#f3f4f6';
+
+        projectModal.style.backgroundColor = '#111827';
+        projectModal.style.color = '#f3f4f6';
+        toDoModal.style.backgroundColor = '#111827';
+        toDoModal.style.color = '#f3f4f6';
         
         nightmodeIcon.style.filter = 'invert(100%)';
+        muteIcon.style.filter = 'invert(100%)';
     }
     else if (nightmode == true) {
         nightmode = false;
-        header.style.backgroundColor = '#fafaf9';
+        header.style.backgroundColor = '#f5f5f4';
         header.style.color = 'black';
 
         main.style.backgroundColor = '#f5f5f4';
@@ -103,13 +111,69 @@ function setNightmode() {
         projectArea.style.backgroundColor = '#d6d3d1';
         projectArea.style.color = 'black';
 
+        projectModal.style.backgroundColor = 'white';
+        projectModal.style.color = 'black';
+        toDoModal.style.backgroundColor = 'white';
+        toDoModal.style.color = 'black';
+
         nightmodeIcon.style.filter = 'none';
+        muteIcon.style.filter = 'none';
     }
+    console.log(currentProject.todos);
+    
+    
+    const ToDoItems = document.querySelectorAll('.todo-item');
+    currentProject.todos.forEach(todo => {
+        ToDoItems.forEach(item => {
+            if (item.dataset.title === todo.title) {
+                if (todo.isCompleted == true) {
+                    completedCheck = true;
+                }
+                else {
+                    completedCheck = false;
+                }
+                applyColorsBasedOnState(item, completedCheck);
+            }
+        });
+    });
+}
+let completedCheck = '';
+
+
+// Mute background music
+function toggleMute() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    if (backgroundMusic) {
+        backgroundMusic.muted = !backgroundMusic.muted;
+        if (backgroundMusic.muted) {
+            muteIcon.src = '/src/assets/volume-off.svg'
+        }
+        else {
+            muteIcon.src = '/src/assets/volume-high.svg'
+        }
+    }
+    else {
+        console.error('Audio element not found');
+    }
+}
+
+muteBtn.addEventListener('click', toggleMute);
+
+// Button click sound effect
+const buttonSound = document.getElementById('buttonSound');
+
+const buttons = document.querySelectorAll('.sfx');
+buttons.forEach(button => {
+    button.addEventListener('click', playButtonSound)
+});
+
+function playButtonSound() {
+    buttonSound.play();
 }
 
 // Exports
 export {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
-    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn}
+    addtoDoBtn, cancelToDoBtn, toDoDueDateInput, toDoPriorityInput,
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode}

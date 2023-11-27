@@ -7,18 +7,25 @@
     <link href="/src/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+    <dialog class="welcome">
+        <h2>Welcome to QuestBook!</h2>
+        <button id="enter">Enter</button>
+    </dialog>
+    <div class="main">
+        <header class="header">
         <button id="nightmode-btn">
             <img src="/src/assets/weather-night.svg" id="nightmode-icon">
         </button>
-        <h1>Quest Book</h1>
+        <button id="mute-btn">
+            <img src="/src/assets/volume-high.svg" id="mute-icon">
+        </button>
+        <h1>QuestBook</h1>
         <img src="/src/assets/tree.png" alt="bow and arrow icon">
     </header>
-    <div class="main">
         <div class="sidebar">
             <header class="sidebar-header">
                 <h2>Quests</h2>
-                <button class="newproject">New Quest</button>
+                <button class="newproject sfx">New Quest</button>
             </header>
             <div class="project-list">
                 
@@ -42,7 +49,7 @@
 
             </h1>
             <div class="buttonarea">
-                <button class="new-todo">+</button>
+                <button class="new-todo sfx">+</button>
                 Quest Tasks:
             </div>
             <ul class="todo-list">
@@ -54,10 +61,6 @@
                     <div class="input">
                         <label for="title">Task name:</label>
                         <input type="text" id="todo-title-input" name="title" maxlength="50">
-                    </div>
-                    <div class="input">
-                        <label for="description">Description:</label>
-                        <input type="text" id="todo-description-input" name="todo-description-input" maxlength="100">
                     </div>
                     <div class="input">
                         <label for="duedate">Due Date:</label>
@@ -79,6 +82,8 @@
             </dialog>
         </div>
     </div>
+    <audio id="backgroundMusic" src="/src/assets/Littleroot.mp3" loop></audio>
+    <audio id="buttonSound" src="/src/assets/click.wav"></audio>
 <script src="main.js"></script>
 </body>
 </html>

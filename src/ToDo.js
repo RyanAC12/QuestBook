@@ -1,8 +1,8 @@
 import {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
-    addtoDoBtn, cancelToDoBtn, toDoDescInput, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn} 
+    addtoDoBtn, cancelToDoBtn, toDoDueDateInput, toDoPriorityInput,
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode} 
     from './DOMElements';
 
 // Project list
@@ -17,9 +17,8 @@ function Project(title) {
 }
 
 // To do item constructor
-function ToDo(title, description, dueDate, priority) {
+function ToDo(title, dueDate, priority) {
     this.title = title
-    this.description = description
     this.dueDate = dueDate
     this.priority = priority
     this.isCompleted = false;
@@ -88,8 +87,7 @@ function addToDo() {
     }
     
     const newToDo = new ToDo(
-        toDoTitleInput.value,
-        toDoDescInput.value, 
+        toDoTitleInput.value, 
         toDoDueDateInput.value, 
         toDoPriorityInput.value);
 
@@ -98,7 +96,6 @@ function addToDo() {
     createToDo(newToDo);
 
     toDoTitleInput.value = '';
-    toDoDescInput.value = '';
     toDoDueDateInput.value = '';
     toDoPriorityInput.value = '';
 
@@ -116,17 +113,6 @@ function createToDo(newToDo) {
     titleDiv.className = 'todo-title';
     titleDiv.textContent = newToDo.title;
     newToDoDiv.appendChild(titleDiv);
-    
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'todo-description';
-    const descriptionLabel = document.createElement('span');
-    descriptionLabel.className = 'label';
-    descriptionLabel.textContent = "Description:";
-    descriptionDiv.appendChild(descriptionLabel);
-    const descriptionData = document.createElement('span');
-    descriptionData.textContent = newToDo.description;
-    descriptionDiv.appendChild(descriptionData);
-    newToDoDiv.appendChild(descriptionDiv);
 
     const dateDiv = document.createElement('div');
     dateDiv.className = 'todo-date';
@@ -170,10 +156,11 @@ function createToDo(newToDo) {
 
     if (newToDo.isCompleted) {
         titleDiv.style.textDecoration = 'line-through';
-        newToDoDiv.style.backgroundColor = '#475569';
         completeBtn.style.display = 'none';
     }
 
+    applyColorsBasedOnState(newToDoDiv, newToDo.isCompleted);
+    
     toDoList.appendChild(newToDoDiv);
 }
 
@@ -185,7 +172,7 @@ function completeToDo(currentToDo) {
             if (currentTitleDiv) {
                 currentTitleDiv.style.textDecoration = 'line-through';
             }
-            item.style.backgroundColor = '#475569';
+            item.style.backgroundColor = '#737373';
             const buttons = item.querySelectorAll('button');
             buttons.forEach(button => {
                 if (button.textContent === 'Complete') {
@@ -211,4 +198,13 @@ function deleteToDo(currentToDo) {
         }
 }
 
-export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo}
+function applyColorsBasedOnState(item, isCompleted) {
+    if (nightmode == true) {
+        item.style.backgroundColor = isCompleted ? '#334155' : '#64748b';
+    }
+    else {
+        item.style.backgroundColor = isCompleted ? '#737373' : '#e5e5e5';
+    }
+}
+
+export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState}
