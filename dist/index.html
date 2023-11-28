@@ -20,7 +20,9 @@
             <img src="/src/assets/volume-high.svg" id="mute-icon">
         </button>
         <h1>QuestBook</h1>
-        <img src="/src/assets/tree.png" alt="bow and arrow icon">
+        <button id="icon-select-btn">
+           <img src="/src/assets/tree.png" alt="icon" class="currenticon"> 
+        </button>
     </header>
         <div class="sidebar">
             <header class="sidebar-header">
@@ -81,6 +83,16 @@
                 </form>
             </dialog>
         </div>
+        <dialog class="icon-select">
+            <h2>Select an icon!</h2>
+            <div class="icons">
+                <img src="/src/assets/tree.png" alt="tree icon" id="tree" class="icon">
+                <img src="/src/assets/gallade.gif" alt="gallade icon" id="gallade" class="icon">
+                <img src="/src/assets/heracross.gif" alt="heracross icon" id="heracross" class="icon">
+                <img src="/src/assets/medicham.gif" alt="medicham icon" id="medicham" class="icon">
+            </div>
+            <h5>gifs provided by @ThePixelDex</h5>
+        </dialog>
     </div>
     <audio id="backgroundMusic" src="/src/assets/Littleroot.mp3" loop></audio>
     <audio id="buttonSound" src="/src/assets/click.wav"></audio>

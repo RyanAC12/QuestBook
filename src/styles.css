@@ -337,3 +337,62 @@ form button:active{
     scale: 0.9;
     transition: 0.1s;
 }
+
+#icon-select-btn {
+    border: none;
+    background-color: transparent;
+}
+
+#icon-select-btn:hover {
+    transition: 0.1s;
+    scale: 1.1;
+}
+
+#icon-select-btn:active {
+    transition: 0.1s;
+    scale: 1.0;
+}
+
+.icon-select {
+    width: 800px;
+    height: 400px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.534);
+}
+
+.icon-select img {
+    width: 100px;
+    height: auto;
+}
+
+.icon:hover {
+    transition: 0.1s;
+    scale: 1.1;
+}
+
+.icon:active {
+    transition: 0.1s;
+    scale: 1.0;
+}
+
+.currenticon {
+    scale: 2;
+}
+
+h1, h2:hover {
+    cursor: default;
+}
+
+button {
+    cursor: pointer;
+}

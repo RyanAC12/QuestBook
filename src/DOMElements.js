@@ -94,6 +94,8 @@ function setNightmode() {
         projectModal.style.color = '#f3f4f6';
         toDoModal.style.backgroundColor = '#111827';
         toDoModal.style.color = '#f3f4f6';
+        iconSelectModal.style.backgroundColor = '#111827';
+        iconSelectModal.style.color = '#f3f4f6';
         
         nightmodeIcon.style.filter = 'invert(100%)';
         muteIcon.style.filter = 'invert(100%)';
@@ -115,6 +117,8 @@ function setNightmode() {
         projectModal.style.color = 'black';
         toDoModal.style.backgroundColor = 'white';
         toDoModal.style.color = 'black';
+        iconSelectModal.style.backgroundColor = 'white';
+        iconSelectModal.style.color = 'black';
 
         nightmodeIcon.style.filter = 'none';
         muteIcon.style.filter = 'none';
@@ -171,9 +175,36 @@ function playButtonSound() {
     buttonSound.play();
 }
 
+// Icon Select
+const iconSelectModal = document.querySelector('.icon-select');
+const icons = document.querySelectorAll('.icon');
+const iconSelectBtn = document.getElementById('icon-select-btn');
+
+const currentIcon = document.querySelector('.currenticon');
+
+iconSelectBtn.addEventListener('click', () => {
+    iconSelectModal.style.display = 'flex';
+    iconSelectModal.showModal();
+});
+
+icons.forEach(icon => {
+    icon.addEventListener('click', () => {
+            if (icon.id !== 'tree') {
+                currentIcon.src = `/src/assets/${icon.id}.gif`
+                currentIcon.style.scale = '2.5';
+            }
+            else if (icon.id == 'tree') {
+                currentIcon.src = `/src/assets/tree.png`
+                currentIcon.style.scale = '2';
+            }
+            iconSelectModal.close();
+            iconSelectModal.style.display = 'none';
+    });
+});
+
 // Exports
 export {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
     addtoDoBtn, cancelToDoBtn, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode}
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode, iconSelectModal}
