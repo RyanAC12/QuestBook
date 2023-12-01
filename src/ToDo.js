@@ -2,7 +2,8 @@ import {projectList, toDoList, newProjectBtn, projectModal,
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
     addtoDoBtn, cancelToDoBtn, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode} 
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode,
+    deleteProjectBtn} 
     from './DOMElements';
 
 // Project list
@@ -62,6 +63,7 @@ function displayProject(projectID) {
     }
     newtoDoBtn.style.display = 'flex';
     toDoList.style.display = 'flex';
+    deleteProjectBtn.style.display = 'flex';
 
     projectTitle.innerHTML = '';
     projectTitle.textContent = displayProject.title;
@@ -172,7 +174,12 @@ function completeToDo(currentToDo) {
             if (currentTitleDiv) {
                 currentTitleDiv.style.textDecoration = 'line-through';
             }
-            item.style.backgroundColor = '#737373';
+            if (nightmode == true) {
+                item.style.backgroundColor = '#334155';
+            }
+            else {
+                item.style.backgroundColor = '#737373';
+            }
             const buttons = item.querySelectorAll('button');
             buttons.forEach(button => {
                 if (button.textContent === 'Complete') {
@@ -198,6 +205,26 @@ function deleteToDo(currentToDo) {
         }
 }
 
+function deleteProject(currentProject) {
+    const ProjectList = document.querySelector('.project-list');
+    const projectsEach = document.querySelectorAll('.project');
+    projectsEach.forEach(project => {
+        if (project.dataset.title === currentProject.title) {
+            ProjectList.removeChild(project);
+        }
+    });
+    const index = projects.findIndex(project => project.title === currentProject.title);
+        if (index > -1) {
+        projects.splice(index, 1);
+        }
+    projectTitle.innerHTML = '';
+    toDoList.innerHTML = '';
+    newtoDoBtn.style.display = 'none';
+    toDoList.style.display = 'none';
+    currentProject = '';
+    deleteProjectBtn.style.display = 'none';
+}
+
 function applyColorsBasedOnState(item, isCompleted) {
     if (nightmode == true) {
         item.style.backgroundColor = isCompleted ? '#334155' : '#64748b';
@@ -207,4 +234,4 @@ function applyColorsBasedOnState(item, isCompleted) {
     }
 }
 
-export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState}
+export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject}

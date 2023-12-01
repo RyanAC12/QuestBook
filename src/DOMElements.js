@@ -1,4 +1,4 @@
-import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState } from "./ToDo";
+import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject } from "./ToDo";
 
 // DOM Elements
 const projectList = document.querySelector('.project-list');
@@ -30,7 +30,9 @@ const nightmodeIcon = document.querySelector('#nightmode-icon');
 
 const muteBtn = document.querySelector('#mute-btn');
 const muteIcon = document.querySelector('#mute-icon');
-
+const deleteProjectBtn = document.querySelector('#delete-project');
+const deleteProjectModal = document.querySelector('.delete-confirmation');
+const sidebarClose = document.querySelector('#sidebar-close');
 
 // Event listeners
 newProjectBtn.addEventListener('click', () => {
@@ -53,6 +55,7 @@ projectList.addEventListener('click', function(e) {
         const projectID = e.target.dataset.title;
         currentProject = projects.find(project => project.title === projectID);
         displayProject(projectID);
+        sidebar.classList.toggle('open');
     }
 });
 
@@ -71,6 +74,30 @@ toDoForm.addEventListener('submit', function(e) {
     addToDo();
 });
 
+deleteProjectBtn.addEventListener('click', function() {
+    if (currentProject !== '') {
+        deleteProjectModal.showModal();
+        deleteProjectModal.style.display = 'flex'; 
+    }
+    else {
+        return;
+    }
+});
+
+const confirmProjectDelete = document.querySelector('#delete-yes');
+const cancelProjectDelete = document.querySelector('#delete-no');
+
+cancelProjectDelete.addEventListener('click', () => {
+    deleteProjectModal.close();
+    deleteProjectModal.style.display = 'none';
+})
+
+confirmProjectDelete.addEventListener('click', function() {
+    deleteProject(currentProject);
+    deleteProjectModal.close();
+    deleteProjectModal.style.display = 'none';
+});
+
 // Night Mode feature
 let nightmode = false;
 
@@ -86,9 +113,11 @@ function setNightmode() {
         
         sidebar.style.backgroundColor = '#111827';
         sidebar.style.color = '#f3f4f6';
+        sidebar.style.borderColor = 'white';
 
         projectArea.style.backgroundColor = '#111827';
         projectArea.style.color = '#f3f4f6';
+        projectArea.style.borderColor = 'white';
 
         projectModal.style.backgroundColor = '#111827';
         projectModal.style.color = '#f3f4f6';
@@ -96,9 +125,14 @@ function setNightmode() {
         toDoModal.style.color = '#f3f4f6';
         iconSelectModal.style.backgroundColor = '#111827';
         iconSelectModal.style.color = '#f3f4f6';
+        deleteProjectModal.style.backgroundColor = '#111827';
+        deleteProjectModal.style.color = '#f3f4f6';
         
         nightmodeIcon.style.filter = 'invert(100%)';
         muteIcon.style.filter = 'invert(100%)';
+        sidebarMenu.style.filter = 'invert(100%)';
+        sidebarClose.style.filter = 'invert(100%)';
+        deleteProjectBtn.style.filter = 'invert(100%)';        
     }
     else if (nightmode == true) {
         nightmode = false;
@@ -109,9 +143,11 @@ function setNightmode() {
         
         sidebar.style.backgroundColor = '#a8a29e';
         sidebar.style.color = 'black';
+        sidebar.style.borderColor = 'black';
 
         projectArea.style.backgroundColor = '#d6d3d1';
         projectArea.style.color = 'black';
+        projectArea.style.borderColor = 'black';
 
         projectModal.style.backgroundColor = 'white';
         projectModal.style.color = 'black';
@@ -119,9 +155,14 @@ function setNightmode() {
         toDoModal.style.color = 'black';
         iconSelectModal.style.backgroundColor = 'white';
         iconSelectModal.style.color = 'black';
+        deleteProjectModal.style.backgroundColor = 'white';
+        deleteProjectModal.style.color = 'black';
 
         nightmodeIcon.style.filter = 'none';
         muteIcon.style.filter = 'none';
+        sidebarMenu.style.filter = 'none';
+        sidebarClose.style.filter = 'none';
+        deleteProjectBtn.style.filter = 'none';
     }
     console.log(currentProject.todos);
     
@@ -202,9 +243,21 @@ icons.forEach(icon => {
     });
 });
 
+// Mobile configurations
+const sidebarMenu = document.getElementById('sidebar-menu');
+sidebarMenu.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+});
+
+const closeSidebar = document.getElementById('sidebar-close');
+closeSidebar.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+});
+
 // Exports
 export {projectList, toDoList, newProjectBtn, projectModal, 
     addProjectBtn, cancelProjectBtn, projectTitleInput, projectForm, 
     projectTitle, newToDoBtn, toDoModal, toDoForm, toDoTitleInput,
     addtoDoBtn, cancelToDoBtn, toDoDueDateInput, toDoPriorityInput,
-    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode, iconSelectModal}
+    newtoDoBtn, header, main, sidebar, projectArea, nightmodeBtn, nightmode, 
+    iconSelectModal, deleteProjectModal, deleteProjectBtn}

@@ -35,8 +35,8 @@ body {
     height: 90%;
     background-color: #f5f5f4;
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: minmax(400px, 25%) auto;
+    grid-template-rows: minmax(50px, 10%) auto;
     gap: 1rem;
     height: 100%;
     width: 100%;
@@ -91,6 +91,8 @@ body {
 
 .project {
     cursor: pointer;
+    font-size: 25px;
+    align-self: center;
 }
 
 .project-entry {
@@ -104,6 +106,7 @@ body {
     align-items: center;
     padding: 1rem;
     display: none;
+    box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.534);
 }
 
 #project-form {
@@ -165,7 +168,7 @@ form button:active{
     align-items: center;
     justify-content: flex-start;
     gap: 1rem;
-    overflow: hidden;
+    overflow: scroll;
     border: 5px solid black;
 }
 
@@ -201,6 +204,7 @@ form button:active{
     align-items: center;
     padding: 1rem;
     display: none;
+    box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.534);
 }
 
 #todo-form {
@@ -234,6 +238,7 @@ form button:active{
     border: 2px solid black;
     border-radius: 8px;
     background-color: #e5e5e5;
+    align-self: flex-end;
 }
 
 .todo-item button {
@@ -275,12 +280,11 @@ form button:active{
 }
 
 #nightmode-btn {
-    position: absolute;
     border: none;
     background-color: transparent;
-    right: 50px;
-    top: 50px;
     transition: 0.2s;
+    width: 30px;
+    height: auto;
 }
 
 #nightmode-btn:hover {
@@ -290,18 +294,25 @@ form button:active{
 }
 
 #mute-btn {
-    position: absolute;
     border: none;
     background-color: transparent;
-    right: 100px;
-    top: 51px;
     transition: 0.2s;
+    width: 30px;
+    height: auto;
 }
 
 #mute-btn:hover {
     scale: 1.1;
     transition: 0.2s;
     cursor: pointer;
+}
+
+#nightmode-btn, #mute-btn {
+    z-index: 5;
+}
+
+.sidebar {
+    z-index: 10;
 }
 
 .welcome {
@@ -396,3 +407,193 @@ h1, h2:hover {
 button {
     cursor: pointer;
 }
+
+button:focus-visible {
+    outline: none;
+}
+
+#delete-project {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: auto;
+    display: none;
+}
+
+.delete-confirmation {
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 50px 20px rgba(255, 255, 255, 0.534);
+}
+
+#confirm-buttons {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.delete-confirmation button {
+    height: 1.5rem;
+    border: none;
+    padding: .5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.1s;
+}
+
+.delete-confirmation button:hover{
+    filter: invert(1);
+    transition: 0.1s;
+}
+
+.project-area-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.project-area-header-right {
+    display: flex;
+    gap: 1rem;
+}
+
+#sidebar-menu {
+    display: none;
+}
+
+#sidebar-close {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header, .project-area {
+        width: 90%;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    .header {
+        height: 10%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        font-size: 20px;
+    }
+
+    .project-area {
+        height: 90%;
+    }
+
+    .project-area-header {
+        padding-right: 1rem;
+    }
+
+    .icons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .project-area-header img {
+        width: 30px;
+    }
+
+    .todo-item {
+        max-width: 400px;
+        max-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        gap: 10px;
+    }
+
+    .sidebar {
+        position: absolute;
+        left: -100%;
+        transition: left 0.3s;
+        width: 100%;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    .project-entry, .todo-entry {
+        overflow: hidden;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #sidebar-menu {
+        display: inline-flex;
+        border: none;
+        background-color: transparent;
+        width: 50px;
+        height: auto;
+    }
+
+    #sidebar-close {
+        display: inline-flex;
+        border: none;
+        background-color: transparent;
+        width: 50px;
+        height: auto;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .project-area {
+        grid-column: 1 / -1;
+    }
+
+    button {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    #delete-project {
+        width: 50px;
+        height: auto;
+    }
+
+    dialog {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .todo-list, .project-list {
+        flex-direction: column;
+    }
+}
+
+
