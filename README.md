@@ -39,7 +39,7 @@ Welcome to QuestBook! This project merges some subtle video game concepts with t
 ---
 
 ### Why QuestBook?
-QuestBook is more than just a to-do list. It's an experience that turns mundane task management into an engaging activity. Its unique environment it not only useful but also enjoyable.
+QuestBook is more than just a to-do list. It's an experience that turns mundane task management into an engaging activity. Its unique environment is not only useful but also enjoyable.
 
 ---
 
