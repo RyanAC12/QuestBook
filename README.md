@@ -45,7 +45,6 @@ QuestBook is more than just a to-do list. It's an experience that turns mundane 
 ---
 
 ### Future Enhancements
-- Integration with web storage API for local saves.
 - Expanding the soundscape with a background music selection screen for a wider range of choices.
 - Checking off certain amounts of tasks will activate milestones. Upon eaching a milestone, new icons and themes may be unlocked.
 
