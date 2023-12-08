@@ -66,7 +66,3 @@ Ryan Christensen
 
 ### Acknowledgements
 - Pokémon Omega Ruby soundtrack used under fair use for educational purposes.
-
----
-
-This project reflects my commitment to creative problem-solving and attention to detail. I'm excited to bring my passion and skills to a dynamic team that values innovation and user-centric design.
