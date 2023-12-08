@@ -1,4 +1,4 @@
-import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject } from "./ToDo";
+import { addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject, saveProjects, loadProjects } from "./ToDo";
 
 // DOM Elements
 const projectList = document.querySelector('.project-list');

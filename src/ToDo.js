@@ -18,11 +18,11 @@ function Project(title) {
 }
 
 // To do item constructor
-function ToDo(title, dueDate, priority) {
+function ToDo(title, dueDate, priority, isCompleted) {
     this.title = title
     this.dueDate = dueDate
     this.priority = priority
-    this.isCompleted = false;
+    this.isCompleted = isCompleted;
 }
 
 // Add project to project list
@@ -47,6 +47,7 @@ function addProject() {
 
     projectModal.style.display = 'none';
     projectModal.close();
+    saveProjects();
 }
 
 // Check if project title exists
@@ -75,6 +76,7 @@ function displayProject(projectID) {
     else {
      currentProject.todos.forEach(item => createToDo(item));
     }
+    saveProjects();
 }
 
 // Add item to to-do list
@@ -103,6 +105,7 @@ function addToDo() {
 
     toDoModal.style.display = 'none';
     toDoModal.close();
+    saveProjects();
 }
 
 // Helper function
@@ -166,6 +169,8 @@ function createToDo(newToDo) {
     toDoList.appendChild(newToDoDiv);
 }
 
+
+// Complete to-do items
 function completeToDo(currentToDo) {
     const ToDoItems = document.querySelectorAll('.todo-item');
     ToDoItems.forEach(item => {
@@ -189,8 +194,11 @@ function completeToDo(currentToDo) {
         }
     });
     currentToDo.isCompleted = true;
+    saveProjects();
 }
 
+
+// Delete to-do items
 function deleteToDo(currentToDo) {
     const ToDoList = document.querySelector('.todo-list');
     const ToDoItems = document.querySelectorAll('.todo-item');
@@ -203,8 +211,11 @@ function deleteToDo(currentToDo) {
         if (index > -1) {
         currentProject.todos.splice(index, 1);
         }
+    saveProjects();
 }
 
+
+// Delete projects
 function deleteProject(currentProject) {
     const ProjectList = document.querySelector('.project-list');
     const projectsEach = document.querySelectorAll('.project');
@@ -223,8 +234,10 @@ function deleteProject(currentProject) {
     toDoList.style.display = 'none';
     currentProject = '';
     deleteProjectBtn.style.display = 'none';
+    saveProjects();
 }
 
+// Function for dynamic colors on objects in nightmode
 function applyColorsBasedOnState(item, isCompleted) {
     if (nightmode == true) {
         item.style.backgroundColor = isCompleted ? '#334155' : '#64748b';
@@ -234,4 +247,44 @@ function applyColorsBasedOnState(item, isCompleted) {
     }
 }
 
-export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject}
+// LocalStorage Implementation
+// Function to save projects
+function saveProjects() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+// Function to load projects
+function loadProjects() {
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+        const parsedProjects = JSON.parse(savedProjects);
+
+        // Instantiate each project and its to-dos
+        projects = parsedProjects.map(projData => {
+            const project = new Project(projData.title);
+            project.todos = projData.todos.map(todoData => 
+                new ToDo(todoData.title, todoData.dueDate, todoData.priority, todoData.isCompleted)
+            );
+            return project;
+        });
+    }
+}
+
+// Create and render projects for page reloads
+function renderProjects() {
+    projectList.innerHTML = ''
+    projects.forEach(project => {
+        createProjectElement(project)
+    })
+}
+
+function createProjectElement(project) {
+    const newProjectDiv = document.createElement('div');
+    newProjectDiv.className = 'project';
+    newProjectDiv.dataset.title = project.title;
+    newProjectDiv.textContent = project.title;
+
+    projectList.appendChild(newProjectDiv);
+}
+
+export {addProject, projects, displayProject, addToDo, currentProject, createToDo, currentToDo, applyColorsBasedOnState, deleteProject, saveProjects, loadProjects, createProjectElement, renderProjects}

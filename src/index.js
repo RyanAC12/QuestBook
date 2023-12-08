@@ -4,7 +4,12 @@ import {projectList, toDoList, newProjectBtn, projectModal,
     addtoDoBtn, cancelToDoBtn, newtoDoBtn, header, main, sidebar, 
     projectArea, nightmodeBtn, nightmode, iconSelectModal, deleteProjectModal} from './DOMElements';
 
+import { saveProjects, loadProjects, createProjectElement, renderProjects } from './ToDo';
+
 function intialPageLoad() {
+    loadProjects();
+    renderProjects();
+
     projectModal.style.display = 'none';
     projectModal.close();
     toDoModal.style.display = 'none';
@@ -29,4 +34,4 @@ function intialPageLoad() {
     });
 }
 
-intialPageLoad();
+intialPageLoad(); 
