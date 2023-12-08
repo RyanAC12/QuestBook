@@ -19,7 +19,7 @@ Welcome to QuestBook! This project merges some subtle video game concepts with t
 - **JavaScript:**
 - Dynamic Interactivity: Implemented advanced JavaScript features to create a dynamic user interface that responds to user interactions.
 - Object Constructors: Practiced OOP principles by using object constructors (e.g., function ToDo) for creating task objects with properties like title, due date, priority, and completion status. This approach enhanced the scalability and maintainability of the code.
-- **HTML5** Focused on semantic HTML for structured and accessible content.
+- **HTML5:** Focused on semantic HTML for structured and accessible content.
 - **CSS:**
 - Responsive Design: Employed CSS techniques like Flexbox and CSS Grid for responsive layouts, ensuring the app adapts to different screen sizes.
 - Custom Animations: Added custom animations and transitions to enrich the visual appeal and user interaction.
