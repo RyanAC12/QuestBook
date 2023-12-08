@@ -12,6 +12,7 @@ Welcome to QuestBook! This project merges some subtle video game concepts with t
 3. **Night Mode:** Upon clicking the moon icon, users will be met with a sleek, dark navy blue theme that's easy on the eyes. This mode is perfect for night owls.
 4. **Ambient Background Music:** Featuring "Littleroot Town" from Pokémon Omega Ruby/Alpha Sapphire for an immersive experience. This can be toggled on or off.
 5. **Customizable Icons:** Users can click on the tree icon to access the icon selection feature, adding a personalized touch to their QuestBook.
+6. **Local Storage:** Quests and tasks are stored locally and will remain on page reloads.
 
 ---
 
@@ -44,7 +45,6 @@ QuestBook is more than just a to-do list. It's an experience that turns mundane 
 ---
 
 ### Future Enhancements
-- Integration with web storage API for local saves.
 - Expanding the soundscape with a background music selection screen for a wider range of choices.
 - Checking off certain amounts of tasks will activate milestones. Upon eaching a milestone, new icons and themes may be unlocked.
 
@@ -66,7 +66,3 @@ Ryan Christensen
 
 ### Acknowledgements
 - Pokémon Omega Ruby soundtrack used under fair use for educational purposes.
-
----
-
-This project reflects my commitment to creative problem-solving and attention to detail. I'm excited to bring my passion and skills to a dynamic team that values innovation and user-centric design.
