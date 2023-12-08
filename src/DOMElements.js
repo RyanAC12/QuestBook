@@ -204,18 +204,6 @@ function toggleMute() {
 
 muteBtn.addEventListener('click', toggleMute);
 
-// Button click sound effect
-const buttonSound = document.getElementById('buttonSound');
-
-const buttons = document.querySelectorAll('.sfx');
-buttons.forEach(button => {
-    button.addEventListener('click', playButtonSound)
-});
-
-function playButtonSound() {
-    buttonSound.play();
-}
-
 // Icon Select
 const iconSelectModal = document.querySelector('.icon-select');
 const icons = document.querySelectorAll('.icon');
