@@ -1,6 +1,6 @@
 # QuestBook: Your Videogame-Inspired To-Do List
 
-##Check out the live version [here](https://ryanac12.github.io/QuestBook/)
+Check out the live version [here](https://ryanac12.github.io/QuestBook/)
 ---
 
 ### Introduction
