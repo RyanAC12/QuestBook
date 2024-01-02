@@ -6,6 +6,8 @@ import {projectList, toDoList, newProjectBtn, projectModal,
 
 import { saveProjects, loadProjects, createProjectElement, renderProjects } from './ToDo';
 
+import './styles.css';
+
 function intialPageLoad() {
     loadProjects();
     renderProjects();
