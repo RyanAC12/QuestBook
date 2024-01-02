@@ -1,7 +1,7 @@
 # QuestBook: Your Videogame-Inspired To-Do List
 
 Check out the live version [here](https://ryanac12.github.io/QuestBook/)
----
+---\-
 
 ### Introduction
 Welcome to QuestBook! This project merges some subtle video game concepts with the functionality of a to-do list, making task management an engaging and enjoyable experience. QuestBook allows users to create and manage 'Quests' - each representing a project with its own set of tasks.
