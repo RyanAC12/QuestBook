@@ -191,10 +191,10 @@ function toggleMute() {
     if (backgroundMusic) {
         backgroundMusic.muted = !backgroundMusic.muted;
         if (backgroundMusic.muted) {
-            muteIcon.src = '/src/assets/volume-off.svg'
+            muteIcon.src = 'assets/volume-off.svg'
         }
         else {
-            muteIcon.src = '/src/assets/volume-high.svg'
+            muteIcon.src = 'assets/volume-high.svg'
         }
     }
     else {
@@ -219,11 +219,11 @@ iconSelectBtn.addEventListener('click', () => {
 icons.forEach(icon => {
     icon.addEventListener('click', () => {
             if (icon.id !== 'tree') {
-                currentIcon.src = `/src/assets/${icon.id}.gif`
+                currentIcon.src = `assets/${icon.id}.gif`
                 currentIcon.style.scale = '2.5';
             }
             else if (icon.id == 'tree') {
-                currentIcon.src = `/src/assets/tree.png`
+                currentIcon.src = `assets/tree.png`
                 currentIcon.style.scale = '2';
             }
             iconSelectModal.close();
