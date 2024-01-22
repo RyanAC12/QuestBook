@@ -60,7 +60,7 @@ Ryan Christensen
 ---
 
 ### Connect with Me
-- LinkedIn: https://www.linkedin.com/in/ryan-christensen-841470202/
+- LinkedIn: https://www.linkedin.com/in/ryanchristensen12/
 - GitHub: https://github.com/RyanAC12
 - Email: RyanAC12@gmail.com
 
